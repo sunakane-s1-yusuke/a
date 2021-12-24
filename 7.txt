@@ -1,0 +1,4 @@
+docker-compose -f /fabric/test-network/docker/docker-compose-test-net.yaml up -d
+/fabric/bin/configtxgen -configPath /fabric/test-network/configtx -profile TwoOrgsChannel -outputCreateChannelTx /fabric/test-network/channel-artifacts/mychannel.tx -channelID mychannel
+/fabric/bin/configtxgen -configPath /fabric/test-network/configtx -profile TwoOrgsChannel -outputAnchorPeersUpdate /fabric/test-network/channel-artifacts/Org1MSPanchors.tx -channelID mychannel -asOrg Org1MSP
+/fabric/bin/configtxgen -configPath /fabric/test-network/configtx -profile TwoOrgsChannel -outputAnchorPeersUpdate /fabric/test-network/channel-artifacts/Org2MSPanchors.tx -channelID mychannel -asOrg Org2MSP
