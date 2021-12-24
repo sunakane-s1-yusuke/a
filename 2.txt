@@ -1,0 +1,24 @@
+/fabric/bin/fabric-ca-client register --caname ca-org1 --id.name peer0 --id.secret peer0pw --id.type peer --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+/fabric/bin/fabric-ca-client register --caname ca-org1 --id.name user1 --id.secret user1pw --id.type client --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+/fabric/bin/fabric-ca-client register --caname ca-org1 --id.name org1admin --id.secret org1adminpw --id.type admin --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com
+/fabric/bin/fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7054 --caname ca-org1 -M /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp --csr.hosts peer0.org1.example.com --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/msp/config.yaml /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/config.yaml
+/fabric/bin/fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7054 --caname ca-org1 -M /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls --enrollment.profile tls --csr.hosts peer0.org1.example.com --csr.hosts localhost --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/tlscacerts/* /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/signcerts/* /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/keystore/* /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/msp/tlscacerts
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/tlscacerts/* /fabric/test-network/organizations/peerOrganizations/org1.example.com/msp/tlscacerts/ca.crt
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/tlsca
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/tlscacerts/* /fabric/test-network/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/ca
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/* /fabric/test-network/organizations/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/users
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com
+/fabric/bin/fabric-ca-client enroll -u https://user1:user1pw@localhost:7054 --caname ca-org1 -M /fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/msp/config.yaml /fabric/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/config.yaml
+mkdir -p /fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com
+/fabric/bin/fabric-ca-client enroll -u https://org1admin:org1adminpw@localhost:7054 --caname ca-org1 -M /fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp --tls.certfiles /fabric/test-network/organizations/fabric-ca/org1/tls-cert.pem
+/cp -f /fabric/test-network/organizations/peerOrganizations/org1.example.com/msp/config.yaml /fabric/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/config.yaml
