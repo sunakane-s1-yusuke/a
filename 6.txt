@@ -17,3 +17,4 @@ mkdir -p /fabric/test-network/organizations/ordererOrganizations/example.com/use
 mkdir -p /fabric/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com
 /fabric/bin/fabric-ca-client enroll -u https://ordererAdmin:ordererAdminpw@localhost:9054 --caname ca-orderer -M /fabric/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp --tls.certfiles /fabric/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
 cp /fabric/test-network/organizations/ordererOrganizations/example.com/msp/config.yaml /fabric/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/config.yaml
+/fabric/bin/configtxgen -configPath /fabric/test-network/configtx -profile TwoOrgsOrdererGenesis -channelID system-channel -outputBlock /fabric/test-network/system-genesis-block/genesis.block
