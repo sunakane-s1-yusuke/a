@@ -1,0 +1,5 @@
+curl -L -o hyperledger-fabric-linux-amd64-2.2.1.tar.gz https://github.com/hyperledger/fabric/releases/download/v2.2.1/hyperledger-fabric-linux-amd64-2.2.1.tar.gz
+curl -L -o hyperledger-fabric-ca-linux-amd64-1.4.9.tar.gz https://github.com/hyperledger/fabric-ca/releases/download/v1.4.9/hyperledger-fabric-ca-linux-amd64-1.4.9.tar.gz
+tar -xzvf hyperledger-fabric-linux-amd64-2.2.1.tar.gz
+tar -xzvf hyperledger-fabric-ca-linux-amd64-1.4.9.tar.gz
+docker pull hyperledger/fabric-peer:2.2.1
