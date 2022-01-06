@@ -1,3 +1,0 @@
-mkdir -p /fabric/test-network/organizations/ordererOrganizations/example.com
-export FABRIC_CA_CLIENT_HOME=/fabric/test-network/organizations/ordererOrganizations/example.com
-/fabric/bin/fabric-ca-client enroll -u https://admin:adminpw@localhost:9054 --caname ca-orderer --tls.certfiles /fabric/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
