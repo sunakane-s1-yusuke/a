@@ -1,0 +1,1 @@
+/fabric/bin/peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${ORDERER_CA} -C mychannel -n datalocker_log_store ${PEER_CONN_PARMS} -c "{\"function\":\"InitLedger\",\"Args\":[]}"
